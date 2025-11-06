@@ -6,11 +6,12 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:27:28 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/05 17:36:11 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/06 19:01:45 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_putchar(char character)
 {
@@ -42,6 +43,7 @@ int	ft_strcmp(char *s1, char *s2)
 		if (s1[i] != s2[i])
 		{
 			difference = s1[i] - s2[i];
+			return (difference);
 		}
 		i++;
 	}
@@ -51,32 +53,27 @@ int	ft_strcmp(char *s1, char *s2)
 int	main(int argc, char **argv)
 {
 	int		i;
-	int		j;
 	char	*tmp;
-	char	**sorted;
 
 	i = 1;
-	sorted = argv;
 	if (argc > 1)
 	{
-		while (i < argc)
-		{
-			if (ft_strcmp(sorted[i], sorted[i + 1]) > 0)
-			{
-				tmp = sorted[i];
-				sorted[i] = sorted[i + 1];
-				sorted[i + 1] = tmp;
-				i = 1;
-			}
-			else
-				i++;
-		}
-		i = 1;
 		while (i < argc - 1)
 		{
-			ft_putstr(sorted[i]);
+			if (ft_strcmp(argv[i], argv[i + 1]) > 0)
+			{
+				tmp = argv[i];
+				argv[i] = argv[i + 1];
+				argv[i + 1] = tmp;
+				i = 0;
+			}
+			i++;
+		}
+		i = 1;
+		while (i < argc)
+		{
+			ft_putstr(argv[i]);
 			i++;
 		}
 	}
-	return (0);
 }

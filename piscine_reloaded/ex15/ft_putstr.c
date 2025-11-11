@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:54:44 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/05 14:57:58 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/11 17:26:10 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ void	ft_putstr(char *str)
 // {
 // 	ft_putstr("Hoopky doopky");
 // }
-

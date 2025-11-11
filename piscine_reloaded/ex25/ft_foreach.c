@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_foreach.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/11 17:19:17 by someyer           #+#    #+#             */
+/*   Updated: 2025/11/11 17:19:46 by someyer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // #include <unistd.h>
 // #include <stdio.h>
 
@@ -44,16 +56,16 @@
 // 	write (1, array, len);
 // }
 
-void ft_foreach(int *tab, int length, void (*f)(int))
+void	ft_foreach(int *tab, int length, void (*f)(int))
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < length)
-    {
-        f(tab[i]);
-        i++;
-    }
+	i = 0;
+	while (i < length)
+	{
+		f(tab[i]);
+		i++;
+	}
 }
 
 // int main(void)

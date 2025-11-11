@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:01:24 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/05 15:18:07 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/11 17:26:33 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,24 @@
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int	res;
+	int	i;
+	int	difference;
 
-	res = *s1 - *s2;
-	if (s1 == s2)
-		return (res);
-	else
-		return (res);
+	difference = 0;
+	i = 0;
+	while (s1[i] != '\0' || s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+		{
+			difference = s1[i] - s2[i];
+			return (difference);
+		}
+		i++;
+	}
+	return (difference);
 }
 
 // int	main(void)
 // {
 // 	printf("%d", ft_strcmp("c", "a"));
 // }
-

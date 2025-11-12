@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 16:00:01 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/12 16:06:46 by someyer          ###   ########.fr       */
+/*   Created: 2025/11/12 21:03:46 by someyer           #+#    #+#             */
+/*   Updated: 2025/11/12 21:06:55 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include <stdio.h>
+
+int	ft_tolower(int c)
 {
-	if (c >= 0 || c <= 127)
-		return (1);
-	else
-		return (0);
+	int	lowcase_diff;
+
+	lowcase_diff = 'a' - 'A';
+	if (c >= 'A' && c <= 'Z')
+		c = c + lowcase_diff;
+	return (c);
 }
+
+// int	main(void)
+// {
+// 	char	c;
+
+// 	c = 'G';
+// 	c = ft_tolower(c);
+// 	printf("%c", c);
+// }

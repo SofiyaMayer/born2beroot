@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_srtlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 16:00:01 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/12 16:06:46 by someyer          ###   ########.fr       */
+/*   Created: 2025/11/12 16:00:25 by someyer           #+#    #+#             */
+/*   Updated: 2025/11/12 16:07:33 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include <stddef.h>
+
+size_t	ft_strlen(const char *s)
 {
-	if (c >= 0 || c <= 127)
-		return (1);
-	else
-		return (0);
+	int	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }

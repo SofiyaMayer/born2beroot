@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 16:00:01 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/12 16:06:46 by someyer          ###   ########.fr       */
+/*   Created: 2025/11/12 20:58:35 by someyer           #+#    #+#             */
+/*   Updated: 2025/11/12 21:03:10 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include <stdio.h>
+
+int	ft_toupper(int c)
 {
-	if (c >= 0 || c <= 127)
-		return (1);
-	else
-		return (0);
+	int	upcase_diff;
+
+	upcase_diff = 'A' - 'a';
+	if (c >= 'a' && c <= 'z')
+		c = c + upcase_diff;
+	return (c);
 }
+
+// int	main(void)
+// {
+// 	char	c;
+
+// 	c = 'g';
+// 	c = ft_toupper(c);
+// 	printf("%c", c);
+// }

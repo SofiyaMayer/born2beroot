@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 21:10:56 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/12 21:29:12 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/22 13:40:22 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,23 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int			i;
 	size_t		len;
 
 	len = ft_strlen(s);
-	while (len-- >= 0)
+	while (len >= 0)
 	{
 		if (s[len] == c)
-		{
-			while (*s != s[len])
-				s++;
-		}
+			return ((char *)s + len);
+		len--;
 	}
-	return (s);
+	return (NULL);
 }
 
-int	main(void)
-{
-	char		*test = "Test";
-	char	*ptr;
+// int	main(void)
+// {
+// 	const char	*test = "Test";
+// 	char		*ptr;
 
-	ptr = ft_strrchr(test, 's');
-	printf("%s", ptr); 
-}
+// 	ptr = ft_strrchr(test, 's');
+// 	printf("%s", ptr);
+// }

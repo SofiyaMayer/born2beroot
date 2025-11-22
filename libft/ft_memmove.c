@@ -6,13 +6,14 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 17:08:30 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/12 20:33:48 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/22 12:56:55 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <string.h>
 #include <stdio.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {

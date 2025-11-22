@@ -6,9 +6,11 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:00:18 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/12 16:06:53 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/22 12:56:25 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isprint(int c)
 {

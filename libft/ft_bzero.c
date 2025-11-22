@@ -6,11 +6,12 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:15:14 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/12 19:36:12 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/22 12:56:02 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

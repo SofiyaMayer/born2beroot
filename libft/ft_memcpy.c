@@ -6,12 +6,13 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:17:57 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/12 18:02:46 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/22 12:56:50 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdio.h>
+#include "libft.h"
 
 void	*memcpy(void *dest, const void *src, size_t n)
 {

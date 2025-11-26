@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 20:02:58 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/26 20:31:56 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/26 20:39:29 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,19 @@ void *ft_calloc(size_t nmemb, size_t size)
 	return (array);
 }
 
-int main(void)
-{
-    int *arr = ft_calloc(0, sizeof(int));
-	int *arr2 = calloc(0, sizeof(int));
+// int main(void)
+// {
+//     int *arr = ft_calloc(0, sizeof(int));
+// 	int *arr2 = calloc(0, sizeof(int));
+
+// 	printf("arr: %p\narr2: %p\n", arr, arr2);
 	
-    for (int i = 0; i < 5; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-	for (int i = 0; i < 5; i++)
-        printf("%d ", arr2[i]);
-    printf("\n");
-	free(arr);
-	free(arr2);
-}
+//     //for (int i = 0; i < 5; i++)
+//     //    printf("%d ", arr[i]);
+//     printf("\n");
+// 	for (int i = 0; i < 5; i++)
+//         printf("%d ", arr2[i]);
+//     printf("\n");
+// 	free(arr);
+// 	free(arr2);
+// }

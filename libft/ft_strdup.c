@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 19:47:40 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/26 20:02:00 by someyer          ###   ########.fr       */
+/*   Updated: 2025/11/26 20:04:28 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char *ft_strdup(const char *s)
 
 	i = 0;
 	dup = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!dup)
+		return (NULL);
 	while (i < ft_strlen(s))
 	{
 		dup[i] = s[i];

@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 21:07:27 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/22 13:47:21 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/02 17:47:09 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (s)
+	while (*s)
 	{
 		if (*s == c)
 			return ((char *)s);
@@ -29,7 +29,7 @@ char	*ft_strchr(const char *s, int c)
 // 	char	*test;
 // 	char	*ptr;
 
-// 	test = "Test";
+// 	test = "Tet";
 // 	ptr = ft_strchr(test, 's');
 // 	printf("%s", ptr);
 // }

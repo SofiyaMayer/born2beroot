@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 17:08:30 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 19:39:37 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/03 21:08:00 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	dest_cpy = dest;
 	if (dest < src)
 	{
-		while (i++ < n)
+		while (i < n)
+		{
 			dest_cpy[i] = src_cpy[i];
+			i++;
+		}
 	}
 	else
 	{

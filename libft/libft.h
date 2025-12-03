@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 19:35:13 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 19:41:56 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/03 20:52:26 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void ft_putstr_fd(char *s, int fd);
 void ft_striteri(char *s, void (*f)(unsigned int,
 char*));
 void ft_putchar_fd(char c, int fd);
+char *ft_itoa(int n);
+void ft_putendl_fd(char *s, int fd);
+void ft_putnbr_fd(int n, int fd);
 	
 #endif
 

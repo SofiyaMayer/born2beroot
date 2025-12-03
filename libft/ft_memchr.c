@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 16:18:17 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/26 17:14:03 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/03 21:11:01 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	const char	*s_cpy;
+	char	*s_cpy;
 
-	s_cpy = s;
+	s_cpy = (char *)s;
 	while (n > 0 && s_cpy)
 	{
 		n--;
-		if (*s_cpy == c)
+		if (*s_cpy == (char)c)
 			return ((void *)s_cpy);
 		s_cpy++;
 	}

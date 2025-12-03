@@ -1,28 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 16:15:14 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 19:32:22 by someyer          ###   ########.fr       */
+/*   Created: 2025/12/03 17:09:19 by someyer           #+#    #+#             */
+/*   Updated: 2025/12/03 19:33:21 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "libft.h"
+#include <unistd.h>
 
-void	ft_bzero(void *s, size_t n)
+int	num_len(int n)
 {
-	size_t	i;
-	char	*dest;
+	int	len;
+
+	len = 1;
+	while (n / 10 != 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
+
+void ft_putnbr_fd(int n, int fd)
+{
+	int		i;
+	int		len;
+	char	array[12];
 
 	i = 0;
-	dest = s;
-	while (i < n)
+	len = num_len(n);
+	if (n == -2147483648)
 	{
-		dest[i] = '\0';
+		write (1, "-2147483648", 11);
+		return ;
+	}
+	else if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	while (i < len)
+	{
+		array[len - i - 1] = '0' + n % 10;
+		n /= 10;
 		i++;
 	}
+	write (fd, array, len);
 }

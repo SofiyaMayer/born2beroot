@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 19:47:40 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/26 20:04:28 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/03 19:37:47 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 char *ft_strdup(const char *s)
 {
-	int		i;
+	size_t	i;
 	char	*dup;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 19:35:13 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/02 17:56:22 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/03 19:41:56 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ char *ft_substr(char const *s, unsigned int start,
     size_t len);
 void *ft_calloc(size_t nmemb, size_t size);
 char *ft_strtrim(char const *s1, char const *set);
+char **ft_split(char const *s, char c);
+char *ft_strmapi(char const *s, char (*f)(unsigned
+int, char));
+void ft_putstr_fd(char *s, int fd);
+void ft_striteri(char *s, void (*f)(unsigned int,
+char*));
+void ft_putchar_fd(char c, int fd);
 	
 #endif
 

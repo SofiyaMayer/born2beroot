@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 16:17:57 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 19:49:55 by someyer          ###   ########.fr       */
+/*   Created: 2025/12/03 17:02:10 by someyer           #+#    #+#             */
+/*   Updated: 2025/12/03 19:37:28 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdio.h>
-#include "libft.h"
+#include <unistd.h>
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void ft_putstr_fd(char *s, int fd)
 {
-	size_t		i;
-	const char	*src_cpy;
-	char		*dest_cpy;
+	int	i;
 
 	i = 0;
-	src_cpy = src;
-	dest_cpy = dest;
-	while (i < n)
+	while (s[i])
 	{
-		dest_cpy[i] = src_cpy[i];
+		write(fd, &s[i], 1);
 		i++;
 	}
-	return (dest);
 }
-
-// int	main(void)
-// {
-// 	char	str[10] = "Testik";
-
-// 	memcpy(str + 3, str, 6);
-// 	printf("%s", str);
-// }

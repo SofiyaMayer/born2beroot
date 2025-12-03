@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 20:02:58 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/26 20:39:29 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/03 20:08:47 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,12 @@ void *ft_calloc(size_t nmemb, size_t size)
 	char	*array;
 	
 	i = 0;
-	if (nmemb == 0 || size == 0)
+	if (nmemb == 0 || size <= 0)
 		return (NULL);
 	array = malloc(nmemb * size);
 	if (!array)
 		return (NULL);
-	while (i < nmemb)
-	{
-		array[i] = 0;
-		i++;
-	}
+	ft_memset(array, 0, nmemb * size);
 	return (array);
 }
 

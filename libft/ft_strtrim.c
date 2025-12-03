@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:42:41 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/02 17:56:10 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/03 19:39:02 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char *ft_strtrim(char const *s1, char const *set)
 	size_t	i;
 	
 	start = 0;
+	i = 0;
 	end = ft_strlen(s1);
 	while(s1[start] && ft_strchr(set, s1[start]))
 		start++;

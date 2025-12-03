@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 17:08:30 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/22 12:56:55 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/03 19:39:37 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-int	main(void)
-{
-	char	str1[10] = "Testik";
-	char	str2[10] = "Testik";	
+// int	main(void)
+// {
+// 	char	str1[10] = "Testik";
+// 	char	str2[10] = "Testik";	
 
-	ft_memmove(str1 + 2, str1, 7);
-	printf("\n%s\n", str1);
-	memmove(str2 + 2, str2, 7);
-	printf("%s", str2);
-}
+// 	ft_memmove(str1 + 2, str1, 7);
+// 	printf("\n%s\n", str1);
+// 	memmove(str2 + 2, str2, 7);
+// 	printf("%s", str2);
+// }

@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:42:41 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 19:39:02 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/09 14:43:46 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ char *ft_strtrim(char const *s1, char const *set)
 		start++;
 	while(end > start && ft_strchr(set, s1[end - 1]))
 		end--;
-	printf("start: %zu end: %zu\n", start, end);
 	trimmed = malloc(end - start + 1);
 	while (start < end)
 	{

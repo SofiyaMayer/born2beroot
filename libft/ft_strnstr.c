@@ -6,13 +6,14 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 17:28:27 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/26 18:19:41 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/09 14:50:37 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdio.h>
 #include <bsd/string.h>
+#include "libft.h"
 
 
 // "We are looking for a substring"
@@ -23,15 +24,12 @@
 
 int	is_same(const char *s1, const char *substr)
 {
-	while (substr && (*s1 == *substr))
+	while (*substr && *s1 && (*s1 == *substr))
 	{
 		s1++;
 		substr++;
 	}
-	if (*substr == '\0')
-		return (1);
-	else
-		return (0);
+	return (*substr == '\0');
 }
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
@@ -39,6 +37,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	char	*big_cpy;
 
 	big_cpy = (char *)big;
+	if (len > (size_t)ft_strlen(big))
+		return (NULL);
 	while (len > 0)
 	{
 		len--;

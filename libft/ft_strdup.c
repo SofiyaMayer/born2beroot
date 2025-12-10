@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 19:47:40 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 19:37:47 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:43:38 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string.h>
 #include "libft.h"
 
-char *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	size_t	i;
 	char	*dup;
@@ -27,7 +27,7 @@ char *ft_strdup(const char *s)
 	while (i < ft_strlen(s))
 	{
 		dup[i] = s[i];
-		i++; 
+		i++;
 	}
 	dup[i] = '\0';
 	return (dup);
@@ -37,12 +37,10 @@ char *ft_strdup(const char *s)
 // {
 // 	char	*test;
 // 	char	*result;
-	
 // 	test = "test";
 // 	result = ft_strdup(test);
 // 	printf("Custom: %s\n", ft_strdup(test));
 // 	free(result);
-
 // 	result = strdup(test);
 // 	printf("Official: %s\n", strdup(test));
 // 	free(result);

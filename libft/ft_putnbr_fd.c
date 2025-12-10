@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:09:19 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 21:04:34 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:10:18 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	num_len(int n)
 	return (len);
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	int		i;
 	int		len;

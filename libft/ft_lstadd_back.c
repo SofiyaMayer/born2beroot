@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 11:38:35 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/09 12:42:29 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:13:45 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-void ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list *ptr;
-	
+	t_list	*ptr;
+
 	ptr = ft_lstlast(*lst);
 	ptr->next = new;
 	new->next = NULL;

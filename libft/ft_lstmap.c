@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:43:12 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/09 13:30:33 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:15:06 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-t_list *ft_lstmap(t_list *lst, void *(*f)(void *),
-void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*node;
 	t_list	*head;
-	
+
 	if (!lst || !f || !del)
 		return (NULL);
 	node = ft_lstnew((*f)(lst->content));

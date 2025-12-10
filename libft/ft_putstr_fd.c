@@ -6,13 +6,13 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:02:10 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 19:37:28 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:09:38 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 

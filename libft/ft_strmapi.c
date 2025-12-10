@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:20:05 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/10 13:37:15 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:08:12 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *ft_strmapi(char const *s, char (*f)(unsigned
-int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	int		i;
 	char	*str;
 
 	i = 0;
 	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!str)
-		return (NULL);	
+		return (NULL);
 	while (s[i])
 	{
 		str[i] = (*f)(i, s[i]);

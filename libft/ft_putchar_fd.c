@@ -6,14 +6,14 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 17:00:28 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 17:01:40 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:09:20 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-void ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }

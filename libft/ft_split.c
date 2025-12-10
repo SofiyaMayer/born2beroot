@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 17:56:48 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/09 14:22:44 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:54:40 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,29 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-size_t count_words(const char *s, char c)
+size_t	count_words(const char *s, char c)
 {
-    size_t i = 0;
-    size_t count = 0;
-    size_t in_word = 0;
+	size_t	i;
+	size_t	count;
+	size_t	in_word;
 
-    if (!s)
-        return 0;
-    while (s[i])
-    {
-        if (s[i] != c && !in_word)
-        {
-            in_word = 1;
-            count++;
-        }
-        else if (s[i] == c)
-            in_word = 0;
-        i++;
-    }
-    return count;
+	i = 0;
+	count = 0;
+	in_word = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] != c && !in_word)
+		{
+			in_word = 1;
+			count++;
+		}
+		else if (s[i] == c)
+			in_word = 0;
+		i++;
+	}
+	return (count);
 }
 
 char	*word_dup(char const *s, size_t len)
@@ -54,13 +57,13 @@ char	*word_dup(char const *s, size_t len)
 	return (dup);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**splitted;
 	size_t	i;
 	size_t	word_len;
 	size_t	word_count;
-	
+
 	i = 0;
 	word_len = 0;
 	word_count = count_words(s, c);
@@ -71,7 +74,7 @@ char **ft_split(char const *s, char c)
 	{
 		while (*s == c)
 			s++;
-		while (s[word_len] != c && s[word_len] != '\0') 
+		while (s[word_len] != c && s[word_len] != '\0')
 			word_len++;
 		splitted[i] = word_dup(s, word_len);
 		s += word_len;

@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:42:41 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/10 13:40:17 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:51:07 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*trimmed;
 	size_t	start;
 	size_t	end;
 	size_t	i;
-	
+
 	start = 0;
 	i = 0;
 	end = ft_strlen(s1);
-	while(s1[start] && ft_strchr(set, s1[start]))
+	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
-	while(end > start && ft_strchr(set, s1[end - 1]))
+	while (end > start && ft_strchr(set, s1[end - 1]))
 		end--;
 	trimmed = malloc(end - start + 1);
 	while (start < end)
@@ -36,7 +36,7 @@ char *ft_strtrim(char const *s1, char const *set)
 		i++;
 	}
 	trimmed[i] = '\0';
-	return(trimmed);
+	return (trimmed);
 }
 
 // int main(void)

@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 17:28:27 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/10 14:06:52 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 14:17:18 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	return (NULL);
 }
 
-int main(void)
-{
-    const char *haystack = "abcdefghi";
+// int main(void)
+// {
+//     const char *haystack = "abcdefghi";
 
-    printf("Test: haystack=\"abcdefghi\", needle=\"cd\", n=8\n");
-    printf("ft_strnstr: %p\n", ft_strnstr(haystack, "cd", -1));
-    printf("strnstr:    %p\n", strnstr(haystack, "cd", -1));
+//     printf("Test: haystack=\"abcdefghi\", needle=\"cd\", n=8\n");
+//     printf("ft_strnstr: %p\n", ft_strnstr(haystack, "cd", -1));
+//     printf("strnstr:    %p\n", strnstr(haystack, "cd", -1));
 
-    return 0;
-}
+//     return 0;
+// }

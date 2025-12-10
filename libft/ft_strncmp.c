@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 15:43:38 by someyer           #+#    #+#             */
-/*   Updated: 2025/11/26 16:18:49 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:29:30 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	while (n && s1 && (*s1 == *s2))
+	while (n && *s1 && *s2 && (*s1 == *s2))
 	{
 		n--;
 		s1++;

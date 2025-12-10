@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 17:28:27 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/10 15:06:27 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:24:03 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 #include <stdio.h>
 #include "libft.h"
 
-int	is_same(const char *s1, const char *substr)
+int	is_same(const char *s1, const char *substr, size_t len)
 {
-	while (*substr && *s1 && (*s1 == *substr))
+	while (*substr && len > 0 && (*s1 == *substr))
 	{
 		s1++;
 		substr++;
+		len--;
 	}
 	return (*substr == '\0');
 }
@@ -33,10 +34,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		return (big_cpy);
 	while (len > 0 && *big_cpy)
 	{
-		len--;
-		if (is_same(big_cpy, little) == 1)
+		if (is_same(big_cpy, little, len) == 1)
 			return ((char *)big_cpy);
 		big_cpy++;
+		len--;
 	}
 	return (NULL);
 }

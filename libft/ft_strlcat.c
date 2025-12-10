@@ -6,12 +6,11 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 19:32:08 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 22:36:55 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 17:35:46 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
-#include <bsd/string.h>
 #include "libft.h"
 #include <stdio.h>
 

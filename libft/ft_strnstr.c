@@ -6,13 +6,12 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 17:28:27 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/10 14:17:18 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:06:27 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdio.h>
-#include <bsd/string.h>
 #include "libft.h"
 
 int	is_same(const char *s1, const char *substr)

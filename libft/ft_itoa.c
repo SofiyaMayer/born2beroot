@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:59:22 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 15:58:05 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:01:30 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,20 @@ int	char_len(int n)
 	return (count);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	int		start;
 	int		len;
 	int		digit;
 	char	*str;
-	
+
 	start = 0;
 	len = char_len(n);
 	str = malloc(sizeof(char) * len + 1);
 	if (!str)
 		return (NULL);
 	if (n == -2147483648)
-	{
-		ft_strlcpy(str, "-2147483648", len + 1);
-		return (str);
-	}
+		return (ft_strlcpy(str, "-2147483648", len + 1), str);
 	if (n < 0)
 	{
 		str[0] = '-';
@@ -57,9 +54,8 @@ char *ft_itoa(int n)
 	while (len > start)
 	{
 		digit = n % 10 + '0';
-		str[len - 1] = digit;
+		str[--len] = digit;
 		n /= 10;
-		len--;
 	}
 	return (str);
 }
@@ -69,7 +65,6 @@ char *ft_itoa(int n)
 // 	int		i;
 // 	int		number;
 // 	char	*result;
-	
 // 	i = 0;
 // 	number = INT_MIN;
 // 	result = ft_itoa(number);

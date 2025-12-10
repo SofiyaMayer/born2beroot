@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 19:35:13 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/10 15:17:23 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 15:34:10 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ void ft_lstdelone(t_list *lst, void (*del)(void*));
 void ft_lstclear(t_list **lst, void (*del)(void*));
 t_list *ft_lstmap(t_list *lst, void *(*f)(void *),
 void (*del)(void *));
+void ft_striteri(char *s, void (*f)(unsigned int,
+char*));
 
 #endif

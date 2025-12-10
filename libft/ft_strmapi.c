@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:20:05 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/03 16:58:15 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 13:37:15 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int, char))
 	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!str)
 		return (NULL);	
-	while (str[i])
+	while (s[i])
 	{
 		str[i] = (*f)(i, s[i]);
 		i++;

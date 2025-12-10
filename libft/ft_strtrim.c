@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 15:42:41 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/09 14:43:46 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 13:40:17 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char *ft_strtrim(char const *s1, char const *set)
 		start++;
 		i++;
 	}
+	trimmed[i] = '\0';
 	return(trimmed);
 }
 

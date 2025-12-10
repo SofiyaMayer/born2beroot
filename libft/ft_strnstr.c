@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 17:28:27 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/10 15:24:03 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:25:09 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "libft.h"
 
-int	is_same(const char *s1, const char *substr, size_t len)
+static int	is_same(const char *s1, const char *substr, size_t len)
 {
 	while (*substr && len > 0 && (*s1 == *substr))
 	{

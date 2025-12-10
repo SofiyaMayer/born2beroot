@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 17:56:48 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/10 15:54:40 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:24:45 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-size_t	count_words(const char *s, char c)
+static size_t	count_words(const char *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -39,7 +39,7 @@ size_t	count_words(const char *s, char c)
 	return (count);
 }
 
-char	*word_dup(char const *s, size_t len)
+static char	*word_dup(char const *s, size_t len)
 {
 	size_t	i;
 	char	*dup;

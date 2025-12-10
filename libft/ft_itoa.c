@@ -6,7 +6,7 @@
 /*   By: someyer <someyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:59:22 by someyer           #+#    #+#             */
-/*   Updated: 2025/12/10 16:05:14 by someyer          ###   ########.fr       */
+/*   Updated: 2025/12/10 16:23:06 by someyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
-int	char_len(int n)
+static int	char_len(int n)
 {
 	int	count;
 
@@ -30,7 +30,7 @@ int	char_len(int n)
 	return (count);
 }
 
-char	*alloc_string(size_t len)
+static char	*alloc_string(size_t len)
 {
 	char	*str;
 

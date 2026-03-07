@@ -59,4 +59,63 @@ Now I needed to choose between primary / extended partition types. At first, I n
 Create the same way extended partition (press `e`) and continue with default size. After that, create it **one more time**, so you will end up with **sda5**, which will be encrypted further.
 
 ![extended partitions](guide_2.png)
-# Resources
+
+After you achieved similar structure, you can continue with disk encrypting. I encrypted it using LUKS format. Enter the following command:
+```bash
+cryptsetup luksFormat --type luks1 /dev/sda5
+```
+
+After that sda5 disk will be encrypted in LUKS format.
+
+![LUKS formatting](luksformatting.png)
+
+Now if you want to see the result, you need to open encrypted disk and enter your passphrase.
+
+```bash
+cryptsetup open /dev/sda5 sda5_crypt
+```
+
+Now you can enter ```lsblk``` command and see the result.
+
+![Formatting result](crypteddisk_result.png)
+
+Now we can power off the machine and start again in GUI mode, where we can do the rest installation
+
+* *Note:* 
+<small> I tried to continue in text installation regime, but I had problems to configure mountpoints. I haven't found what was the issue. In GUI installator there is a straightforward way how to enter mountpoints and I didn't have any issues so I chose this variant. </small>
+
+Enter GUI installation continue to ```Installation Destination```, click on available hard disk and choose ```Custom``` configuration option and continue.
+
+![Entering GUI installation](gui_installation.png)
+![Choosing Hard Disk](hd_choosing.png)
+
+Now, delete everything under ```Unknown``` state, if you have anything. Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we did it before.
+
+![Create boot](create_boot.png)
+
+Now, instead xfs format, choose ext4 option and click on update settings.
+
+![Format boot](format_boot.png)
+
+Now the same way create root mountpoint. In mountpoint enter ```/```, give it ```10G``` and reformat it to ext4. After that we can create a new volume group and name it ```LVMGroup```.
+
+![Create LVMGroup](create_LVMGroup.png)
+
+After that, create ```swap``` mountpoint with ```2.3G``` of space. It should be in LVMGroup. 
+In result you have ```/boot```, ```/``` and ```swap``` ready like in the next picture.
+
+![Mountpoints ready](swap_ready.png)
+
+If you'll try to continue, you will notice, that program is calling you to create ```biosboot``` mountpoint and give it ```1MiB``` of space. Do that for continuing installation. 
+
+![biosboot ready](biosboot_ready.png)
+
+Now click ```Done``` and accept all of your changes.
+
+After that, you need to enable root account. Accessing root account via SSH should be disabled.
+
+![Create rootuser](enable_rootuser.png)
+
+Finally, you are done! Click on ```Begin installation``` and have a cookie!
+
+![Ending installation](end_installation.png)

@@ -79,6 +79,30 @@ Now you can enter ```lsblk``` command and see the result.
 
 ![Formatting result](./screenshots/crypteddisk_result.png)
 
+After that, create a physical volume inside our crypted container.
+
+```bash
+pvcreate /dev/mapper/sda5_crypt
+```
+
+Create LVMGroup volume group.
+
+```bash
+vgcreate LVMGroup /dev/mapper/sda5_crypt
+```
+
+Create root and swap logical volumes in LVMGroup.
+
+```bash
+lvcreate -L 10G LVMGroup -n root
+```
+
+```bash
+lvcreate -L 2.3G LVMGroup -n swap
+```
+
+![root & swap created](/screenshots/root_swap.png)
+
 Now we can power off the machine and start again in GUI mode, where we can do the rest installation
 
 * *Note:* 
@@ -89,7 +113,13 @@ Enter GUI installation continue to ```Installation Destination```, click on avai
 ![Entering GUI installation](./screenshots/gui_installation.png)
 ![Choosing Hard Disk](./screenshots/hd_choosing.png)
 
-Now, delete everything under ```Unknown``` state, if you have anything. Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we did it before.
+Now, under ```Unknown``` assign correct mountpoints. 
+
+For root:
+
+
+
+Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we did it before.
 
 ![Create boot](./screenshots/create_boot.png)
 

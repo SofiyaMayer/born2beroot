@@ -113,35 +113,33 @@ Enter GUI installation continue to ```Installation Destination```, click on avai
 ![Entering GUI installation](./screenshots/gui_installation.png)
 ![Choosing Hard Disk](./screenshots/hd_choosing.png)
 
-Now, under ```Unknown``` assign correct mountpoints. 
+Unlock your encrypted disk and enter passphrase.
 
-For root:
+![Enter passphrase GUI](./screenshots/enter_passphrase_gui.png)
+
+Now, under ```Unknown``` there's nothing we can do with ```sda1```. It's not a big deal, delete it, we will create it again later.
+
+![Delete boot](./screenshots/del_unknown_boot.png)
+
+Click on ```root```, reformat it in ext4 and assign ``` '/' ``` mount point. You must reformat, otherwise you will catch an error.
+
+![Assign root](./screenshots/root_reformat_gui.png)
+
+After that, reformat ```swap``` in swap format.
+
+Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we did it before. Reformat it in ext4 after it's done.
+
+![Create boot](./screenshots/create_boot_gui.png)
 
 
-
-Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we did it before.
-
-![Create boot](./screenshots/create_boot.png)
-
-Now, instead xfs format, choose ext4 option and click on update settings.
-
-![Format boot](./screenshots/format_boot.png)
-
-Now the same way create root mountpoint. In mountpoint enter ```/```, give it ```10G``` and reformat it to ext4. After that we can create a new volume group and name it ```LVMGroup```.
-
-![Create LVMGroup](./screenshots/create_LVMGroup.png)
-
-After that, create ```swap``` mountpoint with ```2.3G``` of space. It should be in LVMGroup. 
-In result you have ```/boot```, ```/``` and ```swap``` ready like in the next picture.
-
-![Mountpoints ready](./screenshots/swap_ready.png)
-
-If you'll try to continue, you will notice, that program is calling you to create ```biosboot``` mountpoint and give it ```1MiB``` of space. Do that for continuing installation. 
-
-![biosboot ready](./screenshots/biosboot_ready.png)
+* *Note:*
+If you'll try to continue, program could ask you to create ```biosboot``` mountpoint and give it ```1MiB``` of space. Do that for continuing installation. 
 
 Now click ```Done``` and accept all of your changes.
 
+Click on KDump and choose automatic option.
+
+![Configue KDump](./screenshots/kdump.png)
 After that, you need to enable root account. Accessing root account via SSH should be disabled.
 
 ![Create rootuser](./screenshots/enable_rootuser.png)

@@ -1,0 +1,121 @@
+This project has been created as part of the 42 curriculum by <someyer>
+
+# Description
+### Born2beroot
+This project is about setting up linux server (Rocky linux was chosen) by following specific rules.
+
+...
+
+# Instructions
+
+## 1. Setting up Rocky using Oracle VirtualBox
+First step is to create a virtual machine and install `Rocky linux` (minimal ISO can be downloaded [here](https://rockylinux.org/download). According to the project guidelines, we need a version without GUI interface, so minimal ISO is more then enough.
+
+![Creating a virtual machine](setup_vbox1.png)
+
+During the setup, you also need to configure hardware for the virtual machine. I gave **2 GB of RAM**, and **2 processors**, which is enough for my project (especially for minimal Rocky setup without GUI)
+
+![Hardware](setup_vbox2.png)
+
+I also gave **31 GB** of space for my virtual Hard Disk.
+
+<small>*I initially gave 30 GB, but after I noticed, that I'd need a little bit more space for my project needs, thats why I changed it to 31GB*</small>
+
+![Hard Disk](setup_vbox3.png)
+
+Now click finish and your virtual machine is ready.
+
+![Final VM](setup_vbox4.png)
+
+## 2. Rocky Installation
+
+Now we can procees to Rocky installation.
+
+Rocky has installer with GUI interface or just pure text version. 
+
+*In my project I used both (after I noticed some troubles with text installer, I switched to GUI version to proceed with installation)*
+
+![Choose installation](installation_1.png)
+
+At first step, when picture below appeared, I pressed `e` button end entered `inst.text` in the end of the line after `quiet` and pressed `Ctrl + x` to boot the installation.
+
+![Choosing text installation](installation_2.png)
+
+When I entered, I pressed `alt + F2` to enter the shell, so I could manage my partitions according to project guidelines. For the reference, I needed to achieve this structure in the end:
+
+![Partitions table](structure_project.png)
+
+When I entered the shell, I wanted to see how my hard disk is named, so I used `lsblk` command. My hard disk was named **sda** For managing partitions I used `fdisk`, there are other alternatives, like `parted`, but I already used fdisk before, so I chose to use it in this project.
+
+For managing *sda* device, enter `fdisk /dev/sda` command. After that you can create/delete/edit partitions. I needed to created a new partition. For that case press `n` and `enter`
+
+![Managing partitions via fdisk](guide_1.png)
+
+Now I needed to choose between primary / extended partition types. At first, I need to choose primary one, so press `p` and continue until you see the last sector. In the last sector I put 512 MiB (just enter `+512M`).
+
+* *Note:* 
+<small> During the installation, the system flagged 500 MiB as being below the recommended threshold for stability (that was the value from the project picture); I increased it to 512 MiB to ensure proper kernel updates and system boot reliability.</small>
+
+Create the same way extended partition (press `e`) and continue with default size. After that, create it **one more time**, so you will end up with **sda5**, which will be encrypted further.
+
+![extended partitions](guide_2.png)
+
+After you achieved similar structure, you can continue with disk encrypting. I encrypted it using LUKS format. Enter the following command:
+```bash
+cryptsetup luksFormat --type luks1 /dev/sda5
+```
+
+After that sda5 disk will be encrypted in LUKS format.
+
+![LUKS formatting](luksformatting.png)
+
+Now if you want to see the result, you need to open encrypted disk and enter your passphrase.
+
+```bash
+cryptsetup open /dev/sda5 sda5_crypt
+```
+
+Now you can enter ```lsblk``` command and see the result.
+
+![Formatting result](crypteddisk_result.png)
+
+Now we can power off the machine and start again in GUI mode, where we can do the rest installation
+
+* *Note:* 
+<small> I tried to continue in text installation regime, but I had problems to configure mountpoints. I haven't found what was the issue. In GUI installator there is a straightforward way how to enter mountpoints and I didn't have any issues so I chose this variant. </small>
+
+Enter GUI installation continue to ```Installation Destination```, click on available hard disk and choose ```Custom``` configuration option and continue.
+
+![Entering GUI installation](gui_installation.png)
+![Choosing Hard Disk](hd_choosing.png)
+
+Now, delete everything under ```Unknown``` state, if you have anything. Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we did it before.
+
+![Create boot](create_boot.png)
+
+Now, instead xfs format, choose ext4 option and click on update settings.
+
+![Format boot](format_boot.png)
+
+Now the same way create root mountpoint. In mountpoint enter ```/```, give it ```10G``` and reformat it to ext4. After that we can create a new volume group and name it ```LVMGroup```.
+
+![Create LVMGroup](create_LVMGroup.png)
+
+After that, create ```swap``` mountpoint with ```2.3G``` of space. It should be in LVMGroup. 
+In result you have ```/boot```, ```/``` and ```swap``` ready like in the next picture.
+
+![Mountpoints ready](swap_ready.png)
+
+If you'll try to continue, you will notice, that program is calling you to create ```biosboot``` mountpoint and give it ```1MiB``` of space. Do that for continuing installation. 
+
+![biosboot ready](biosboot_ready.png)
+
+Now click ```Done``` and accept all of your changes.
+
+After that, you need to enable root account. Accessing root account via SSH should be disabled.
+
+![Create rootuser](enable_rootuser.png)
+
+Finally, you are done! Click on ```Begin installation``` and have a cookie!
+
+![Ending installation](end_installation.png)

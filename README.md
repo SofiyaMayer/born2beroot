@@ -9,7 +9,7 @@ This project is about setting up linux server (Rocky linux was chosen) by follow
 # Instructions
 
 ## 1. Setting up Rocky using Oracle VirtualBox
-First step is to create a virtual machine and install `Rocky linux` (minimal ISO can be downloaded [here](https://rockylinux.org/download). According to the project guidelines, we need a version without GUI interface, so minimal ISO is more then enough.
+First step is to create a virtual machine and install `Rocky linux` (minimal ISO can be downloaded [here](https://rockylinux.org/download)). According to the project guidelines, we need a version without GUI interface, so minimal ISO is more then enough.
 
 ![Creating a virtual machine](./screenshots/setup_vbox1.png)
 

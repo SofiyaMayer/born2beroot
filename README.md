@@ -101,9 +101,18 @@ lvcreate -L 10G LVMGroup -n root
 lvcreate -L 2.3G LVMGroup -n swap
 ```
 
+
 ![root & swap created](/screenshots/root_swap.png)
 
-Now we can power off the machine and start again in GUI mode, where we can do the rest installation
+
+Now we need to format root in ext4 format, swap in swap format.
+
+```bash
+mkfs.ext4 /dev/LVMGroup/root
+mkswap /dev/LVMGroup/swap
+```
+
+ Power off the machine and start again in GUI mode, where we can do the rest of installation. If you are failed to boot, just choose your ISO file.
 
 * *Note:* 
 <small> I tried to continue in text installation regime, but I had problems to configure mountpoints. I haven't found what was the issue. In GUI installator there is a straightforward way how to enter mountpoints and I didn't have any issues so I chose this variant. </small>

@@ -134,17 +134,6 @@ Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we 
 
 Now, instead xfs format, choose ext4 option and click on update settings.
 
-![Format boot](./screenshots/format_boot.png)
-
-Now the same way create root mountpoint. In mountpoint enter ```/```, give it ```10G``` and reformat it to ext4. After that we can create a new volume group and name it ```LVMGroup```.
-
-![Create LVMGroup](./screenshots/create_LVMGroup.png)
-
-After that, create ```swap``` mountpoint with ```2.3G``` of space. It should be in LVMGroup. 
-In result you have ```/boot```, ```/``` and ```swap``` ready like in the next picture.
-
-![Mountpoints ready](./screenshots/swap_ready.png)
-
 If you'll try to continue, you will notice, that program is calling you to create ```biosboot``` mountpoint and give it ```1MiB``` of space. Do that for continuing installation. 
 
 ![biosboot ready](./screenshots/biosboot_ready.png)
@@ -158,3 +147,4 @@ After that, you need to enable root account. Accessing root account via SSH shou
 Finally, you are done! Click on ```Begin installation``` and have a cookie!
 
 ![Ending installation](./screenshots/end_installation.png)
+

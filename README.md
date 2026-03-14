@@ -156,3 +156,8 @@ After that, you need to enable root account. Accessing root account via SSH shou
 Finally, you are done! Click on ```Begin installation``` and have a cookie!
 
 ![Ending installation](./screenshots/end_installation.png)
+
+## Post installation
+
+After we installed Rocky linux, enter in the root account, so we can continue.
+

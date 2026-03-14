@@ -9,7 +9,7 @@ This project is about setting up linux server (Rocky linux was chosen) by follow
 # Instructions
 
 ## 1. Setting up Rocky using Oracle VirtualBox
-First step is to create a virtual machine and install `Rocky linux` (minimal ISO can be downloaded [here](https://rockylinux.org/download). According to the project guidelines, we need a version without GUI interface, so minimal ISO is more then enough.
+First step is to create a virtual machine and install `Rocky linux` (minimal ISO can be downloaded [here](https://rockylinux.org/download)). According to the project guidelines, we need a version without GUI interface, so minimal ISO is more then enough.
 
 ![Creating a virtual machine](./screenshots/setup_vbox1.png)
 
@@ -122,24 +122,33 @@ Enter GUI installation continue to ```Installation Destination```, click on avai
 ![Entering GUI installation](./screenshots/gui_installation.png)
 ![Choosing Hard Disk](./screenshots/hd_choosing.png)
 
-Now, under ```Unknown``` assign correct mountpoints. 
+Unlock your encrypted disk and enter passphrase.
 
-For root:
+![Enter passphrase GUI](./screenshots/enter_passphrase_gui.png)
+
+Now, under ```Unknown``` there's nothing we can do with ```sda1```. It's not a big deal, delete it, we will create it again later.
+
+![Delete boot](./screenshots/del_unknown_boot.png)
+
+Click on ```root```, reformat it in ext4 and assign ``` '/' ``` mount point. You must reformat, otherwise you will catch an error.
+
+![Assign root](./screenshots/root_reformat_gui.png)
+
+After that, reformat ```swap``` in swap format.
+
+Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we did it before. Reformat it in ext4 after it's done.
+
+![Create boot](./screenshots/create_boot_gui.png)
 
 
-
-Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we did it before.
-
-![Create boot](./screenshots/create_boot.png)
-
-Now, instead xfs format, choose ext4 option and click on update settings.
-
-If you'll try to continue, you will notice, that program is calling you to create ```biosboot``` mountpoint and give it ```1MiB``` of space. Do that for continuing installation. 
-
-![biosboot ready](./screenshots/biosboot_ready.png)
+* *Note:*
+If you'll try to continue, program could ask you to create ```biosboot``` mountpoint and give it ```1MiB``` of space. Do that for continuing installation. 
 
 Now click ```Done``` and accept all of your changes.
 
+Click on KDump and choose automatic option.
+
+![Configue KDump](./screenshots/kdump.png)
 After that, you need to enable root account. Accessing root account via SSH should be disabled.
 
 ![Create rootuser](./screenshots/enable_rootuser.png)
@@ -148,3 +157,20 @@ Finally, you are done! Click on ```Begin installation``` and have a cookie!
 
 ![Ending installation](./screenshots/end_installation.png)
 
+## 3. Post installation
+
+After we done, boot your system and login to your root account.
+
+After installation, we need to add other logical volumes in our LVMGroup and mount them.
+
+Let's create those logical volumes:
+
+![other volumes](./screenshots/other_volumes.png)
+
+Now, when you execute ```lsblk``` command you will see this result:
+
+![volumes not mounted](./screenshots/no_mounpoints_yet.png)
+
+These volumes need to be mounted. They need to be mounted after the boot automatically, so you will not need to do it again and again. In linux system, there is a configuration file ```/etc/fstab```. Kernel will automatically mount it after you boot.
+
+* *Note:*  This file is critical, if you make a mistake, system could stop booting, so be cautious during the configuration.

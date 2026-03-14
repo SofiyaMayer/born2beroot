@@ -159,7 +159,7 @@ Finally, you are done! Click on ```Begin installation``` and have a cookie!
 
 ## 3. Post installation
 
-After we done, boot your system and login to your root account.
+After we done, boot your system and login to your **root account**.
 
 After installation, we need to add other logical volumes in our LVMGroup and mount them.
 
@@ -171,6 +171,72 @@ Now, when you execute ```lsblk``` command you will see this result:
 
 ![volumes not mounted](./screenshots/no_mounpoints_yet.png)
 
-These volumes need to be mounted. They need to be mounted after the boot automatically, so you will not need to do it again and again. In linux system, there is a configuration file ```/etc/fstab```. Kernel will automatically mount it after you boot.
+These volumes need to be formatted and mounted. Let's do that with following commands:
+
+```bash
+mkfs.ext4 /dev/LVMGroup/home
+mkfs.ext4 /dev/LVMGroup/var
+mkfs.ext4 /dev/LVMGroup/srv
+mkfs.ext4 /dev/LVMGroup/tmp
+mkfs.ext4 /dev/LVMGroup/var-log
+```
+
+After formatting, let's mount devices:
+
+```bash
+mount /dev/LVMGroup/home /home
+mount /dev/LVMGroup/var /var
+mount /dev/LVMGroup/srv /srv
+mount /dev/LVMGroup/tmp /tmp
+mkdir /var/log
+mount /dev/LVMGroup/var-log /var/log
+```
+
+After you write ```lsblk``` command, result will be:
+
+![mounted devices](/screenshots/mounted_lsblk.png)
+
+In the next step, we want our system to do this mounting automatically. For that we can configure /etc/fstab file.
 
 * *Note:*  This file is critical, if you make a mistake, system could stop booting, so be cautious during the configuration.
+
+```bash
+vi /etc/fstab
+```
+
+Write these configurations down below. Don't change anything what is already there:
+
+```
+/dev/mapper/LVMGroup-root /     ext4 defaults 0 0
+/dev/mapper/LVMGroup-home /home ext4 defaults 0 0
+/dev/mapper/LVMGroup-var /var   ext4 defaults 0 0
+/dev/mapper/LVMGroup-srv /srv   ext4 defaults 0 0
+/dev/mapper/LVMGroup-tmp /tmp   ext4 defaults 0 0
+/dev/mapper/LVMGroup-var--log /var/log ext4 defaults 0 0
+```
+
+* *Note:* I used device names here to keep things simple for this demo. In a real project, it’s better to use UUIDs (unique IDs). Device names can change if you plug in new hardware, which can break your setup. UUIDs never change.
+
+In result you will be having something like this:
+
+![fstab config](/screenshots/fstab_config.png)
+
+Now we can check for errors using:
+
+```bash
+mount -a
+```
+
+If you **didn't catch any error** - that's good, we can reboot now and check if everything works. If you have errors, then check your /etc/fstab file again.
+
+```bash
+reboot
+```
+
+Let's check if our partitions are still correct:
+
+![Check after reboot](/screenshots/check_after_reboot.png)
+
+Great! We have all partitions part done! Now we can continue with our project.
+
+## 4. Open-SSH configuration

@@ -2,9 +2,33 @@
 
 # Description
 ### Born2beroot
-This project is about setting up Linux Server (Rocky linux was chosen) by following specific rules.
+This project is about setting up Linux Server and it's management. I chose **Rocky Linux** distribution.
 
-...
+### Debian vs. Rocky
+
+Choosing between Rocky Linux and Debian usually comes down to whether you want a system built for the **corporate Enterprise** (Rocky) or one built by the **Community** (Debian). Both are popular and stable, but they follow different philosophies.
+
+Rocky has a different package manager **dnf** and **.rpm** format, while Debian has **apt** package manager and **.deb** format. 
+
+Because these are distinct distributions, their default software can differ. For instance, Rocky Linux leverages *SELinux* and *firewalld* for security, whereas Debian typically relies on *AppArmor* and *UFW* (Uncomplicated Firewall). You'll also find variations in how configuration files are structured and located across the two systems.
+
+### Brief Project Overview
+
+According to project's guidelines, I needed to do following steps:
+
+- Install Rocky Linux using VirtualBox
+- Achieve similar partition table like in the project .pdf file
+- Have hostname someyer42
+- Configure SSH using 4242 port instead of standard 22
+- Write my own bash monitoring script named *monitoring.sh*, which executes every 10 minutes.
+- Have strong password policy (according to .pdf file)
+- Configure sudo policy, having someyer42 account in following groups (someyer42, sudo)
+
+I also chose to do bonuses for these projects, which includes:
+
+- Configure lighttpd, mariadb, php, wordpress services
+- Add service of my choice (I chose Jellyfin)
+
 
 # Instructions
 
@@ -100,7 +124,6 @@ cd /usr/local/bin
 
 
 ![Monitoring script](/screenshots/monitoring_script.png)
-
 
 # Guide
 
@@ -410,3 +433,14 @@ Now when it's done, let's add port 4242 to firewall.
 ### Adding port to our firewall
 
 
+# Resources
+
+- Rocky Linux Guides from their official website - [link](https://docs.rockylinux.org/guides/)
+
+- Book - *How Linux Works* by Brian Ward
+
+- Born2beroot guide, I found on internet - [link](https://github.com/AGolz/Born2beRoot)
+
+- My peer *iskorepova* helped me a lot, when I couldn't resolve issues with bonuses.
+
+- Google & Gemini for troubleshooting my problems.

@@ -46,7 +46,7 @@ lsblk
 ```
 In result you should see this output:
 
-![commands_checklist](/screenshots/lsblk.png)
+![commands_checklist](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/lsblk.png?raw=true)
 
 #### 2. Check OS release 
 ```bash
@@ -77,7 +77,7 @@ sudo firewall-cmd --state
 
 In result you should be having this output:
 
-![Checklist](/screenshots/commands_checklist.png)
+![Checklist](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/commands_checklist.png?raw=true)
 
 ### Sudo configuration and login check:
 
@@ -123,7 +123,7 @@ cd /usr/local/bin
 ```
 
 
-![Monitoring script](/screenshots/monitoring_script.png)
+![Monitoring script](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/monitoring_script.png?raw=true)
 
 # Guide
 
@@ -131,21 +131,21 @@ I noticed that there is not many people who is doing Rocky Linux and not many re
 ## 1. Setting up Rocky using Oracle VirtualBox
 First step is to create a virtual machine and install `Rocky linux` (minimal ISO can be downloaded [here](https://rockylinux.org/download)). According to the project guidelines, we need a version without GUI interface, so minimal ISO is more then enough.
 
-![Creating a virtual machine](./screenshots/setup_vbox1.png)
+![Creating a virtual machine](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/setup_vbox1.png?raw=true)
 
 During the setup, you also need to configure hardware for the virtual machine. I gave **2 GB of RAM**, and **2 processors**, which is enough for my project (especially for minimal Rocky setup without GUI)
 
-![Hardware](./screenshots/setup_vbox2.png)
+![Hardware](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/setup_vbox2.png?raw=true)
 
 I also gave **31 GB** of space for my virtual Hard Disk.
 
 <small>*I initially gave 30 GB, but after I noticed, that I'd need a little bit more space for my project needs, thats why I changed it to 31GB*</small>
 
-![Hard Disk](./screenshots/setup_vbox3.png)
+![Hard Disk](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/setup_vbox3.png?raw=true)
 
 Now click finish and your virtual machine is ready.
 
-![Final VM](./screenshots/setup_vbox4.png)
+![Final VM](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/setup_vbox4.png?raw=true)
 
 ## 2. Rocky Installation
 
@@ -155,21 +155,21 @@ Rocky has installer with GUI interface or just pure text version.
 
 *In my project I used both (after I noticed some troubles with text installer, I switched to GUI version to proceed with installation)*
 
-![Choose installation](./screenshots/installation_1.png)
+![Choose installation](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/installation_1.png?raw=true)
 
 At first step, when picture below appeared, I pressed `e` button end entered `inst.text` in the end of the line after `quiet` and pressed `Ctrl + x` to boot the installation.
 
-![Choosing text installation](./screenshots/installation_2.png)
+![Choosing text installation](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/installation_2.png?raw=true)
 
-When I entered, I pressed `alt + F2` to enter the shell, so I could manage my partitions according to project guidelines. For the reference, I needed to achieve this structure in the end:
+When I entered, I pres./screenshots/structure_project.pngsed `alt + F2` to enter the shell, so I could manage my partitions according to project guidelines. For the reference, I needed to achieve this structure in the end:
 
-![Partitions table](./screenshots/structure_project.png)
+![Partitions table](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/structure_project.png?raw=true)
 
 When I entered the shell, I wanted to see how my hard disk is named, so I used `lsblk` command. My hard disk was named **sda** For managing partitions I used `fdisk`, there are other alternatives, like `parted`, but I already used fdisk before, so I chose to use it in this project.
 
 For managing *sda* device, enter `fdisk /dev/sda` command. After that you can create/delete/edit partitions. I needed to created a new partition. For that case press `n` and `enter`
 
-![Managing partitions via fdisk](./screenshots/guide_1.png)
+![Managing partitions via fdisk](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/guide_1.png?raw=true)
 
 Now I needed to choose between primary / extended partition types. At first, I need to choose primary one, so press `p` and continue until you see the last sector. In the last sector I put 512 MiB (just enter `+512M`).
 
@@ -178,7 +178,7 @@ Now I needed to choose between primary / extended partition types. At first, I n
 
 Create the same way extended partition (press `e`) and continue with default size. After that, create it **one more time**, so you will end up with **sda5**, which will be encrypted further.
 
-![extended partitions](./screenshots/guide_2.png)
+![extended partitions](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/guide_2.png?raw=true./screenshots/guide_2.png)
 
 After you achieved similar structure, you can continue with disk encrypting. I encrypted it using LUKS format. Enter the following command:
 ```bash
@@ -187,7 +187,7 @@ cryptsetup luksFormat --type luks1 /dev/sda5
 
 After that sda5 disk will be encrypted in LUKS format.
 
-![LUKS formatting](./screenshots/luksformatting.png)
+![LUKS formatting](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/luksformatting.png?raw=true./screenshots/luksformatting.png)
 
 Now if you want to see the result, you need to open encrypted disk and enter your passphrase.
 
@@ -197,7 +197,7 @@ cryptsetup open /dev/sda5 sda5_crypt
 
 Now you can enter ```lsblk``` command and see the result.
 
-![Formatting result](./screenshots/crypteddisk_result.png)
+![Formatting result](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/crypteddisk_result.png?raw=true)
 
 After that, create a physical volume inside our crypted container.
 
@@ -222,7 +222,7 @@ lvcreate -L 2.3G LVMGroup -n swap
 ```
 
 
-![root & swap created](/screenshots/root_swap.png)
+![root & swap created](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/root_swap.png?raw=true/screenshots/root_swap.png)
 
 
 Now we need to format root in ext4 format, swap in swap format.
@@ -239,26 +239,26 @@ mkswap /dev/LVMGroup/swap
 
 Enter GUI installation continue to ```Installation Destination```, click on available hard disk and choose ```Custom``` configuration option and continue.
 
-![Entering GUI installation](./screenshots/gui_installation.png)
-![Choosing Hard Disk](./screenshots/hd_choosing.png)
+![Entering GUI installation](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/gui_installation.png?raw=true./screenshots/gui_installation.png)
+![Choosing Hard Disk](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/hd_choosing.png?raw=true./screenshots/hd_choosing.png)
 
 Unlock your encrypted disk and enter passphrase.
 
-![Enter passphrase GUI](./screenshots/enter_passphrase_gui.png)
+![Enter passphrase GUI](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/enter_passphrase_gui.png?raw=true)
 
 Now, under ```Unknown``` there's nothing we can do with ```sda1```. It's not a big deal, delete it, we will create it again later.
 
-![Delete boot](./screenshots/del_unknown_boot.png)
+![Delete boot](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/del_unknown_boot.png?raw=true)
 
 Click on ```root```, reformat it in ext4 and assign ``` '/' ``` mount point. You must reformat, otherwise you will catch an error.
 
-![Assign root](./screenshots/root_reformat_gui.png)
+![Assign root](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/root_reformat_gui.png?raw=true)
 
 After that, reformat ```swap``` in swap format.
 
 Click on plus button and enter ```/boot``` mountpoint, give it ```512M``` as we did it before. Reformat it in ext4 after it's done.
 
-![Create boot](./screenshots/create_boot_gui.png)
+![Create boot](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/create_boot_gui.png?raw=true)
 
 
 * *Note:*
@@ -268,14 +268,14 @@ Now click ```Done``` and accept all of your changes.
 
 Click on KDump and choose automatic option.
 
-![Configue KDump](./screenshots/kdump.png)
+![Configue KDump](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/kdump.png?raw=true)
 After that, you need to enable root account. Accessing root account via SSH should be disabled.
 
 ![Create rootuser](./screenshots/enable_rootuser.png)
 
 Finally, you are done! Click on ```Begin installation``` and have a cookie!
 
-![Ending installation](./screenshots/end_installation.png)
+![Ending installation](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/end_installation.png?raw=true)
 
 ## 3. Post installation
 
@@ -287,11 +287,11 @@ After installation, we need to add other logical volumes in our LVMGroup and mou
 
 Let's create those logical volumes:
 
-![other volumes](./screenshots/other_volumes.png)
+![other volumes](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/other_volumes.png?raw=true)
 
 Now, when you execute ```lsblk``` command you will see this result:
 
-![volumes not mounted](./screenshots/no_mounpoints_yet.png)
+![volumes not mounted](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/no_mounpoints_yet.png?raw=true)
 
 These volumes need to be formatted and mounted. Let's do that with following commands:
 
@@ -316,7 +316,7 @@ mount /dev/LVMGroup/var-log /var/log
 
 After you write ```lsblk``` command, result will be:
 
-![mounted devices](/screenshots/mounted_lsblk.png)
+![mounted devices](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/mounted_lsblk.png?raw=true)
 
 In the next step, we want our system to do this mounting automatically. For that we can configure /etc/fstab file.
 
@@ -341,7 +341,7 @@ Write these configurations down below. Don't change anything what is already the
 
 In result you will be having something like this:
 
-![fstab config](/screenshots/fstab_config.png)
+![fstab config](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/fstab_config.png?raw=true)
 
 Now we can check for errors using:
 
@@ -357,7 +357,7 @@ reboot
 
 Let's check if our partitions are still correct:
 
-![Check after reboot](/screenshots/check_after_reboot.png)
+![Check after reboot](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/check_after_reboot.png?raw=true)
 
 Great! We have all partitions part done! Now we can continue with our project.
 
@@ -375,7 +375,7 @@ Edit ```/etc/hosts``` file, add a new line: ```127.0.1.1    someyer42``` below l
 ```bash
 vi /etc/hosts
 ```
-![Hostname change](/screenshots/host_file.png)
+![Hostname change](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/host_file.png?raw=true)
 
 Now you can reboot and check new hostname using following command:
 ```bash
@@ -414,7 +414,7 @@ Let's change standard port to ```4242``` in config file. Open this file: ```/etc
 Uncomment line with ```Port 22``` and change it to
 ```Port 4242```.
 
-![Chnaging SSH config](/screenshots/ssh_config.png)
+![Changing SSH config](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/ssh_config.png?raw=true)
 
 As you can notice, on SELinux system you also need to tell SELinux about this change.
 

@@ -1,13 +1,110 @@
-This project has been created as part of the 42 curriculum by <someyer>
+*This project has been created as part of the 42 curriculum by someyer*
 
 # Description
 ### Born2beroot
-This project is about setting up linux server (Rocky linux was chosen) by following specific rules.
+This project is about setting up Linux Server (Rocky linux was chosen) by following specific rules.
 
 ...
 
 # Instructions
 
+Run the Virtual Machine. Now we can ssh to this system from our terminal, e.g. :
+```bash
+ssh someyer42@localhost -p 4242
+```
+
+### Project's Checklist
+Here's commands from project guidelines to check if everything's ready.
+
+#### 1. Check partitions
+```bash
+lsblk
+```
+In result you should see this output:
+
+![commands_checklist](/screenshots/lsblk.png)
+
+#### 2. Check OS release 
+```bash
+head -n 2 /etc/os-release
+```
+#### 3. Check SELinux status
+```bash
+sestatus
+```
+#### 4. Network and port configuration (TCP/UDP)
+```bash
+ss -tunlp
+```
+
+#### 5. Firewall Service Configuration
+```bash
+sudo firewall-cmd --list-service
+```
+
+#### 6. Firewall Port Configuration
+```bash
+sudo firewall-cmd --list-port
+```
+#### 7. Firewall State
+```bash
+sudo firewall-cmd --state
+```
+
+In result you should be having this output:
+
+![Checklist](/screenshots/commands_checklist.png)
+
+### Sudo configuration and login check:
+
+Let's check ```sudoers file``` using ```visudo``` command:
+
+```bash
+sudo visudo
+```
+Check for these lines:
+* Attempts: Limited to 3 attempts.
+```
+Defaults passwd_tries=3
+```
+
+* Custom Message: An error message of my choice must appear on failure.
+```
+Defaults badpass_message="Oh no! Access denied!"
+```
+* Logging: All sudo actions (inputs and outputs) must be logged.
+```
+Defaults log_input, log_output
+Defaults iodir="/var/log/sudo"
+```
+* TTY enabled 
+
+```
+Defaults requiretty
+```
+* Path must be secured
+```
+Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+```
+
+### Monitoring script
+
+Monitoring script is located in ```/usr/local/bin``` and named ```monitoring.sh```.
+Check content of this file.
+You can run this file in ssh session and result will be seen in VM terminal.
+
+```bash
+cd /usr/local/bin
+./monitoring.sh
+```
+
+
+![Monitoring script](/screenshots/monitoring_script.png)
+
+
+# Guide
+
+I noticed that there is not many people who is doing Rocky Linux and not many resources and guides that is easy to navigate (I found only one guide in particular, that was kinda helpful - [link](https://github.com/AGolz/Born2beRoot?tab=readme-ov-file)). In result, I was motivated to write my own guide. I hope, that it will be helpful to someone.
 ## 1. Setting up Rocky using Oracle VirtualBox
 First step is to create a virtual machine and install `Rocky linux` (minimal ISO can be downloaded [here](https://rockylinux.org/download)). According to the project guidelines, we need a version without GUI interface, so minimal ISO is more then enough.
 

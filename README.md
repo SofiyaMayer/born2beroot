@@ -161,6 +161,8 @@ Finally, you are done! Click on ```Begin installation``` and have a cookie!
 
 After we done, boot your system and login to your **root account**.
 
+
+### Partitions
 After installation, we need to add other logical volumes in our LVMGroup and mount them.
 
 Let's create those logical volumes:
@@ -198,7 +200,7 @@ After you write ```lsblk``` command, result will be:
 
 In the next step, we want our system to do this mounting automatically. For that we can configure /etc/fstab file.
 
-* *Note:*  This file is critical, if you make a mistake, system could stop booting, so be cautious during the configuration.
+* *Note:*  <small>This file is critical, if you make a mistake, system could stop booting, so be cautious during the configuration.</small>
 
 ```bash
 vi /etc/fstab
@@ -215,7 +217,7 @@ Write these configurations down below. Don't change anything what is already the
 /dev/mapper/LVMGroup-var--log /var/log ext4 defaults 0 0
 ```
 
-* *Note:* I used device names here to keep things simple for this demo. In a real project, it’s better to use UUIDs (unique IDs). Device names can change if you plug in new hardware, which can break your setup. UUIDs never change.
+* *Note:* <small>I used device names here to keep things simple for this demo. In a real project, it’s better to use UUIDs (unique IDs). Device names can change if you plug in new hardware, which can break your setup. UUIDs never change. </small>
 
 In result you will be having something like this:
 
@@ -239,4 +241,75 @@ Let's check if our partitions are still correct:
 
 Great! We have all partitions part done! Now we can continue with our project.
 
+### Changing Hostname
+
+Change hostname using following command
+
+```bash
+hostnamectl set-hostname [name]
+```
+
+Accordingly to project's guidelines, my hostname will be *someyer42*.
+Edit ```/etc/hosts``` file, add a new line: ```127.0.1.1    someyer42``` below localhost lines.
+
+```bash
+vi /etc/hosts
+```
+![Hostname change](/screenshots/host_file.png)
+
+Now you can reboot and check new hostname using following command:
+```bash
+hostname
+```
+
+Check full name with this command:
+
+```bash
+hostname -f
+```
+
+Both should be showing your new hostname.
+
+Now let's update your system.
+
+```bash
+dnf update
+```
+
+Install everything it shows and we are ready to continue.
+
+* *Note:*
+<small>```dnf update``` and ```dnf upgrade``` do the same thing in Rocky (they are aliases). It's not the case for Debian systems: ```apt update``` and ```apt upgrade``` are a bit different.</small>
+
 ## 4. Open-SSH configuration
+
+Open-SSH is a way to connect to your server's shell remotely from another computer.
+
+- Since we are switching the "entry door" from the default Port ```22``` to Port ```4242```, we have to do two extra things: tell the Firewall to let people through that new port, and tell SELinux to allow the SSH program to use it.
+
+### Change ssh config file
+
+Let's change standard port to ```4242``` in config file. Open this file: ```/etc/ssh/sshd_config```
+
+Uncomment line with ```Port 22``` and change it to
+```Port 4242```.
+
+![Chnaging SSH config](/screenshots/ssh_config.png)
+
+As you can notice, on SELinux system you also need to tell SELinux about this change.
+
+### Telling SELinux about this change
+
+SELinux (Security Enhanced Linux) is a security guard that labels every file and program to ensure they can only access what they are specifically allowed to, even if they have administrator power.
+
+Run this command to add port 4242:
+```bash
+semanage port -a -t ssh_port_t -p tcp 4242
+```
+Without this command, SELinux will see the SSH service trying to use port 4242 and think, "Hey! SSH is only allowed to use port 22".
+
+Now when it's done, let's add port 4242 to firewall.
+
+### Adding port to our firewall
+
+

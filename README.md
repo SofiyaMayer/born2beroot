@@ -608,7 +608,7 @@ sudo vim /etc/login.defs
 
 Make changes, so you have these lines (uncommented): `PASS_MAX_DAYS 30`, `PASS_MIN_DAYS 2`, `PASS_MIN_LEN 10`, `PASS_WARN_AGE 7` like on the screenshot
 
-![Aging policy](/screenshots/aging_policy.png)
+![Aging policy](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/aging_policy.png?raw=true)
 
 Save it. Now let's continue with our password policy.
 
@@ -634,7 +634,7 @@ Add extra rules after `password requisite pam_pwquality.so` line, so it appears 
 password    requisite                                    pam_pwquality.so retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1 maxrepeat=3 reject_username enforce_for_root
 ```
 
-![system-auth config](/screenshots/pamd_file.png)
+![system-auth config](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/pamd_file.png?raw=true)
 
 Save it and change passwords in `root` and `your account`. Policies will apply after you change passwords.
 
@@ -679,11 +679,11 @@ sudo visudo
 
 It should appear like this. (Add missing lines, if you cannot find something)
 
-![sudoers file config](/screenshots/sudoers_file.png)
+![sudoers file config](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/sudoers_file.png?raw=true)
 
 Save it and test, if you have a custom message on a wrong sudo password (try any sudo command / logout, and try a sudo command after you are logged in).
 
-![badpass message](/screenshots/badpass_msg.png)
+![badpass message](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/badpass_msg.png?raw=true)
 
 Also don't forget to create a log folder.
 

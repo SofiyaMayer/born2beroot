@@ -6,20 +6,107 @@ This project is about setting up Linux Server and it's management. I chose **Roc
 
 ### Debian vs. Rocky
 
-Choosing between Rocky Linux and Debian usually comes down to whether you want a system built for the **corporate Enterprise** (Rocky) or one built by the **Community** (Debian). Both are popular and stable, but they follow different philosophies.
+Choosing between Rocky Linux and Debian usually comes down to whether you want a system built for the **Enterprise** (Rocky) or one built by the **Community** (Debian). Both are popular and stable, free and open source.
 
-Rocky has a different package manager **dnf** and **.rpm** format, while Debian has **apt** package manager and **.deb** format. 
+Rocky has a different package manager **dnf** and **.rpm** format, while Debian has **apt** package manager and **.deb** format.
 
 Because these are distinct distributions, their default software can differ. For instance, Rocky Linux leverages *SELinux* and *firewalld* for security, whereas Debian typically relies on *AppArmor* and *UFW* (Uncomplicated Firewall). You'll also find variations in how configuration files are structured and located across the two systems.
 
+### Rocky Linux
+- Rocky Linux is an open-source enterprise operating system designed to be 100% bug-for-bug compatible with Red Hat Enterprise Linux®. Rocky Linux is under intensive development by the community. 
+
+- It has a faster release cycle, which leads to newer software, then in Debian
+
+- By default, Rocky has better security and in general *more hardened* out of the box.
+
+### Debian
+
+Debian is a free, open-source operating system known for its stability and strong commitment to free software. It forms the foundation for many major Linux distributions and is developed by a global volunteer community.
+
+- It has conservative release cycle, which makes system extremely stable
+- It also leads to older software
+- It's quite old. There is a lot of Linux distros, based on Debian (Ubuntu, Parrot OS, Kali, Linux Mint and Pop!_OS). There is also a ton of information and manuals for Debian based systems, which can make it a bit friendlier to someone, who just started to learn Linux.
+- It utilizes AppArmor, which is a bit friendlier, then Rocky's SELinux.
+### SELinux vs. AppArmor
+
+*Security-Enhanced Linux (SELinux)*
+is a Linux kernel security modul that provides a mechanism for supporting mandatory access control (MAC) policies. It works by **labeling files, processes, and network ports**, and **enforcing policies** that define which subjects (processes) can access which objects (files). SELinux operates on a "default deny" principle to enhance system security and prevent privilege escalation.
+
+*AppArmor*
+is also Linux kernel Mandatory Access Control (MAC) system. It enhances security by restricting programs' capabilities (files, network, capabilities) via per-program profiles. It's considered easier to use, then SELinux.
+
+### UFW vs. firewalld
+
+Both of them are wrappers, that manipulate *iptables* or *nftables* and make firewalls easier to manage. 
+
+iptables and nftables (newer and better version of iptables) are low-level kernel packet-filtering frameworks. UFW and firewalld are high-level, user-friendly front-ends, that simplify managing rules for them.
+
+### UFW (Uncomplicated firewall)
+`UFW (Uncomplicated firewall)` as it comes from it's name - an easy-to-use tool, which aims to set rules in "iptables", the native firewall tables in Linux. It's default for Debian and Debian-based Linux distributions.
+
+- It has less features, then firewalld, (e.g. it doesn't separate zones, it's often not installed and running by default). 
+
+*Note:* <small>I tried Ubuntu once (extremely popular distro for beginners, that based on Debian), it didn't have UFW when I installed it to my desktop.
+On Fedora I already had functional firewalld, which was running. I would say it makes operation systems by Red Hat (RHEL systems, Fedora and etc.) a bit more secure, when installed out of the box. I didn't know what are firewalls, ports, how to manage them, but my first Linux distro (which I still use right now) secured me more, then Ubuntu did. </small>
+
+I watched several guides for ufw (because I haven't tried it before and did Rocky Linux) and most of the commands were easier to remember, then in firewalld (you can find a youtube video, which briefly explains both UFW and firewalld [here](https://youtu.be/jOpL5-Fx7vQ?si=-VmFRQvgxNL39aMD)). Command examples:
+
+```sh
+ufw enable
+ufw allow http
+ufw allow https
+ufw status
+```
+
+As you can see, it's pretty self-explanaitory. Of course there is more of these commands, but they are easier, if you compare it with firewalld.
+
+### firewalld
+`firewalld` is also made to set rules in nftables / iptables, but it offers dynamic, zone-based management. It's a bit more complex one and suits well for servers. It's comes by default in RHEL (Red Hat Enterprise Linux)/CentOS systems, including Rocky Linux.
+
+`firewall-cmd` is a command to access a firewalld. I'd recommend to read it's man page for a little bit, because it has a bit heavier syntax and commands are more easier to forget.
+
+- one of the features of firewalld - you can separate internal network to different zones. It's kinda cool. Imagine a hospital where you have a lot of different facilities. You can separate them into different zones. Also as an example, you can have separate zone for work, separate for home and etc. You get the idea.
+
+- public zone is a default zone. If you don't write a specifing zone, e.g. you add a port and don't tell for which zone explicitly - firewalld will add it for public zone (bc. I think it's the zone that user mostly wishes).
+
+- It has a bit heavier syntax and for a mere mortal student like me it's harder to remember these commands. E.g. if you want some changes to apply after a reboot, you need explicitly to ask it.
+
+
+Some commands:
+
+```sh
+firewall-cmd --get-default-zone
+firewall-cmd --list-services
+firewall-cmd --add-service=http
+firewall-cmd --add-service=https
+firewall-cmd --permanent --add-service=http
+firewall-cmd --permanent --add-service=https
+```
+
+### VirtualBox vs. UTM
+
+**VirtualBox** is a program, that we use in our campus for creating *virtual machines* on top of your OS.
+
+- It's **free and open source**.
+- It supports **more Linux distros**, in comparison with UTM.
+- It also has **more features** (e.g. *snapshots*).
+- It's **cross-platform** and can be installed on your Linux / Windows / Mac
+- On **Apple silicon Macs (M1 or later)**, **perfomance can be slower** due to virtualization overhead, meaning your Mac has to split its resources between macOS and the virtual Linux system, which can slow things down.
+
+**UTM** is a **macOS-specific VM** that utilizes **Apple’s Hypervisor framework**, which allows multiple VMs to run independently while staying isolated from the main OS. This results in better performance on Apple silicon Macs. UTM is built on a complex emulator called QEMU, with the added benefit of vastly simplifying the process of getting VMs up and running compared to using QEMU alone. Is also is more lightweight and uses fewer computer resources compared to VirtualBox.
+
+- It doesn't support as many Linux distros or advanced features.
+- It **lacks graphics virtualization**, so it can't handle 3D rendering. GPU-intensive tasks like gaming, video editing, or running complex simulations that require powerful graphics card are not supported.
+- Of course, it's **limited to macOS**.
+- Better perfomance on M1 / later chips.
 ### Brief Project Overview
 
 According to project's guidelines, I needed to do following steps:
 
-- Install Rocky Linux using VirtualBox
+- Install Rocky Linux (or Debian) using Oracle VirtualBox (UTM in case you cannot use VirtualBox)
 - Achieve similar partition table like in the project .pdf file
-- Have hostname someyer42
-- Configure SSH using 4242 port instead of standard 22
+- Have hostname someyer42 for your server.
+- Configure SSH using 4242 port instead of standard 22.
 - Write my own bash monitoring script named *monitoring.sh*, which executes every 10 minutes.
 - Have strong password policy (according to .pdf file)
 - Configure sudo policy, having someyer42 account in following groups (someyer42, sudo)
@@ -31,6 +118,8 @@ I also chose to do bonuses for these projects, which includes:
 
 
 # Instructions
+
+I'm pretty sure, that most of these instructions are already in evaluation guidelines (and there is much more of them), but you can briefly look what we are gonna do during the defense.
 
 Run the Virtual Machine. Now we can ssh to this system from our terminal, e.g. :
 ```bash
@@ -127,13 +216,18 @@ cd /usr/local/bin
 
 # Guide
 
-I noticed that there is not many people who is doing Rocky Linux and not many resources and guides that is easy to navigate (I found only one guide in particular, that was kinda helpful - [link](https://github.com/AGolz/Born2beRoot?tab=readme-ov-file)). In result, I was motivated to write my own guide. I hope, that it will be helpful to someone.
+I noticed that there is not many people who is doing Rocky Linux and not many resources and guides that is easy to navigate (I found only one guide in particular, that was kinda helpful - [link](https://github.com/AGolz/Born2beRoot?tab=readme-ov-file)). In that guide it was Rocky Linux 9 (I used Rocky 10.1 for my project), which was previous version of Rocky. Even though most of those things still can be applied, it's not always working. In result, I was motivated to write my own guide. I hope, that it will be helpful to someone.
+
 ## 1. Setting up Rocky using Oracle VirtualBox
 First step is to create a virtual machine and install `Rocky linux` (minimal ISO can be downloaded [here](https://rockylinux.org/download)). According to the project guidelines, we need a version without GUI interface, so minimal ISO is more then enough.
 
+Now let's create a virtual machine! Someone curious can ask you:"What is a *Virtual Machine*?" Wellp, **Virtual Machine is an operation system, that is built on top of your operation system**. It also uses some of resources of your operation system (like amount of CPU cores, RAM, disk space, etc.). In next steps we will explicitly tell how much resources do we need. Because we are installing **minimal Rocky server without GUI interface**, we need only a few resources to run it smoothly.
+
+- For heavier tasks, like GUI based VMs, you could give a little bit more resources, then in this guide. More resources it has - the smoother is the experience and perfomance. Just beware giving it too much resources, because **your own OS also need ones**.
+
 ![Creating a virtual machine](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/setup_vbox1.png?raw=true)
 
-During the setup, you also need to configure hardware for the virtual machine. I gave **2 GB of RAM**, and **2 processors**, which is enough for my project (especially for minimal Rocky setup without GUI)
+During the setup, you also need to configure hardware for the virtual machine. I gave **2 GB of RAM**, and **1 CPU core**, which is enough for my project (especially for minimal Rocky setup without GUI)
 
 ![Hardware](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/setup_vbox2.png?raw=true)
 
@@ -153,7 +247,9 @@ Now we can procees to Rocky installation.
 
 Rocky has installer with GUI interface or just pure text version. 
 
-*In my project I used both (after I noticed some troubles with text installer, I switched to GUI version to proceed with installation)*
+- *Note*: <small> I noticed, that if you use just GUI based interface, it always want to have *BIOSBOOT* mountpoint on sda1. It's not even a problem, but I was paranoid, that I need */boot* on sda1, or otherwise I will not defend my project (they have a picture in .pdf file that has slightly different result). After my project was done I was told, that is not really a problem, since I'm doing Rocky and it's okay, that it's a little bit different. But because of that, I made my partitions manually. </small>
+
+*In my project I used both text and GUI installers (after I noticed some troubles with text installer, I switched to GUI version to proceed)*
 
 ![Choose installation](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/installation_1.png?raw=true)
 
@@ -198,6 +294,17 @@ cryptsetup open /dev/sda5 sda5_crypt
 Now you can enter ```lsblk``` command and see the result.
 
 ![Formatting result](https://github.com/SofiyaMayer/born2beroot/blob/master/screenshots/crypteddisk_result.png?raw=true)
+
+
+### Logical Volume Management (LVM)
+
+LVM is a great disk management system. It adds an abstraction layer between physical storage and filesystems.
+
+![LVM Example](https://access.redhat.com/webassets/avalon/d/Red_Hat_Enterprise_Linux-9-Configuring_and_managing_logical_volumes-en-US/images/31bd96635c4120abe3e771a423f61cd6/basic-lvm-volume-components.png)
+
+Why is it helpful? In a traditional setup, your hard drive, where your root folder is located is like a glass jar. Once it’s full of data, you can’t make the jar bigger. If you buy a second jar (a new disk), you can put new files in it, but your first jar is still overflowing and stuck.
+
+LVM turns your hard drives into a single "pool" of storage. When your root folder is full, you just toss a new disk into that pool, tell the system to "stretch" the folder, and you have space again, without even rebooting.
 
 After that, create a physical volume inside our crypted container.
 
@@ -407,7 +514,15 @@ Open-SSH is a way to connect to your server's shell remotely from another comput
 
 - Since we are switching the "entry door" from the default Port ```22``` to Port ```4242```, we have to do two extra things: tell the Firewall to let people through that new port, and tell SELinux to allow the SSH program to use it.
 
+
+### Add port 4242 in Virtual Machine settings
+
+Open Oracle VirtualBox, choose your virual machine and click on `settings`, after that go to `Network` section and find `Port forwarding`. Inside a new window create a new port, that has `Host Port 4242`, `Guest Port` 4242, name it (e.g. ssh) and click OK.
+
+![Adding port in VBOX](/screenshots/ssh_vbox.png)
 ### Change ssh config file
+
+A lot of people, including hackers know, that 22 is a port for ssh. If we change this standard port to another one, the system will be more secure. In project guidelines they want us to change it to port 4242.
 
 Let's change standard port to ```4242``` in config file. Open this file: ```/etc/ssh/sshd_config```
 
@@ -422,17 +537,217 @@ As you can notice, on SELinux system you also need to tell SELinux about this ch
 
 SELinux (Security Enhanced Linux) is a security guard that labels every file and program to ensure they can only access what they are specifically allowed to, even if they have administrator power.
 
+We also need to install some specific packages, if they are not installed already.
+
+```sh
+sudo dnf install policycoreutils-python-utils
+```
+
 Run this command to add port 4242:
 ```bash
 semanage port -a -t ssh_port_t -p tcp 4242
 ```
+
 Without this command, SELinux will see the SSH service trying to use port 4242 and think, "Hey! SSH is only allowed to use port 22".
 
 Now when it's done, let's add port 4242 to firewall.
 
 ### Adding port to our firewall
 
+```sh
+firewall-cmd --permanent --zone=public --add-port=4242/tcp
+firewall-cmd --reload
+```
 
+Now we should be able to connect to our server remotely, using terminal in our operation system (your normal system, not Virtual Machine). It also will give you the opportunity to copy+paste, using fish and so on. The only thing to remember: ssh is disabled for root account for security reason. 
+
+Let's create a new user, set a new password and give it sudo priveleges, so we can login using this account.
+
+Go to your Rocky and type:
+
+```sh
+adduser someyer42
+passwd someyer42
+usermod -aG wheel someyer42
+```
+
+If you already had this user, you don't remember the password, you can delete it and then repeat to create it once again.
+
+```sh
+userdel -r someyer42
+```
+
+`-r` flag is used to delete someyer42 folder from /home in the same time (otherwise it will just remain there).
+
+Let's connect to our virutal machine via SSH. Open your terminal and use this command
+
+```sh
+ssh someyer42@localhost -p 4242
+```
+![Connecting via SSH](/screenshots/ssh_connect.png)
+
+Now we can continue in this session. You can finally copy paste easily, so maybe it will be helpful, if you'll need to troubleshoot something.
+
+As bonus, install a text editor that you like. I prefer to use *vim*.
+
+```sh
+sudo dnf install vim
+```
+
+## Password Policy
+
+
+## Aging policy
+We have several config files that we need to edit. Let's start with password's aging policy.
+
+Open `/etc/login.defs` file using your text editor. 
+
+```sh
+sudo vim /etc/login.defs
+```
+
+Make changes, so you have these lines (uncommented): `PASS_MAX_DAYS 30`, `PASS_MIN_DAYS 2`, `PASS_MIN_LEN 10`, `PASS_WARN_AGE 7` like on the screenshot
+
+![Aging policy](/screenshots/aging_policy.png)
+
+Save it. Now let's continue with our password policy.
+
+## Password complexity
+
+Open `/etc/security/pwquality.conf` file. 
+
+```sh
+sudo vim /etc/security/pwquality.conf
+```
+
+Uncomment and change to following lines: `difok=7` `minlen=10` `dcredit=-1` `ucredit=-1` `lcredit=-1` `maxrepeat=3`, `usercheck=1`, `enforcing=1`. Above each of these line you will have an explanation for what it does.
+
+Save it and open `/etc/pam.d/system-auth`:
+
+```sh
+sudo vim /etc/pam.d/system-auth
+```
+
+Add extra rules after `password requisite pam_pwquality.so` line, so it appears like in the screenshot. I tried without it and some functions (like retrying to type password 3 times) didn't work without this change.
+
+```
+password    requisite                                    pam_pwquality.so retry=3 minlen=10 ucredit=-1 lcredit=-1 dcredit=-1 maxrepeat=3 reject_username enforce_for_root
+```
+
+![system-auth config](/screenshots/pamd_file.png)
+
+Save it and change passwords in `root` and `your account`. Policies will apply after you change passwords.
+
+Lits of helpful commands:
+
+- Changing to different account (e.g. `root`)
+```sh
+su root
+```
+
+- Changing your password
+```
+passwd
+```
+- Changing password of another user (you need to have sudo priveleges)
+```
+passwd username
+```
+- Check aging policy applied to a user
+```
+chage -l username
+```
+
+## Configuring sudoers file
+
+You need to add or modify these lines in the `/etc/sudoers` file to meet the project's security standards:
+
+- **Limit Authentication Attempts:** Sudo must be limited to exactly 3 attempts if a password is incorrect.
+
+- **Custom Error Message:** You must display a custom message of your choice when a user enters the wrong password.
+
+- **Log Everything:** Every action performed with sudo—including the inputs and outputs - must be logged in the folder /var/log/sudo/.
+
+- **Enable TTY Mode:** For security reasons, TTY mode must be enabled.
+
+- **Restrict Paths:** The paths available to sudo (the secure_path) must be restricted to a specific list (e.g. make this line, that starts with `Defaults    secure_path` to have this path: `/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin`).
+Open that file using following command:
+
+```sh
+sudo visudo
+```
+
+It should appear like this. (Add missing lines, if you cannot find something)
+
+![sudoers file config](/screenshots/sudoers_file.png)
+
+Save it and test, if you have a custom message on a wrong sudo password (try any sudo command / logout, and try a sudo command after you are logged in).
+
+![badpass message](/screenshots/badpass_msg.png)
+
+Also don't forget to create a log folder.
+
+```sh
+sudo mkdir -p /var/log/sudo
+```
+
+`p` flag creates the directory only if it doesn't already exist.
+I recommend you to navigate there after some time and see your logs.
+## Monitoring script
+
+We need to create `monitoring.sh` file. I have located it inside `/usr/local/bin` directory.
+
+Let's be honest, it will be too easy if I'll just give you my script and tell you to use it. I want you to write a bash script yourself, so you can remember something and explain it to evaluator.
+
+- You should be having shebang `#!/bin/bash` on the start of `monitoring.sh` file.
+- It broadcasts a message every 10 minutes (see `wall` command).
+- You can automate it using `crontab`. I think it's easiest way how to do it.
+- It should start after booting of your system.
+
+Useful bash commands:
+- I often used `awk` to navigate to different columns and `grep` to filter information.
+- `uptime` for checking CPU runtime.
+- `hostname -I` is very convenient way to find your IP address.
+- `nmcli` is a NetworkManager, that is already installed in Rocky. You can find a lot of information there, e.g. your MAC adress.
+- `df -h` for checking your disk usage.
+- `sed` if you noticed, that you have undesired characters, like `,` on the end of the line.
+- `man uname`. Uname has a lot of information about your system, it's architecture, kernel version and etc.
+- `free -h` for checking your RAM.
+
+Don't forget to give appropriate permissions to your `monitoring.sh` file
+
+### Automating with crontab
+
+Firstly, check if you have `cron` already installed. 
+```sh
+systemctl status crond
+```
+
+`crond` is a cron *deamon* (background process). You use `crontab` command to schedule your tasks.
+
+Run this command:
+
+```sh
+sudo crontab -e
+```
+
+If file is empty, that's fine. It's exactly how it should be.
+
+**The Syntax:** You tell crond when to run a task using five fields (the "stars") followed by the command.
+1. **First star**: minutes (0-59)
+2. **Second star**: hours( 0-23)
+3. **Third star**: day of month (1-31).
+4. **Fourth star**: month (1-12)
+5. **Fifth star**: day of week (0 - 6) (Sunday=0 or 7)
+
+e.g. add ` */10 * * * * /path/to/your/script.sh`. It will make you script to run automatically each 10 minutes.
+
+And for reboot you can try to add second line `@reboot /path/to/your/script.sh`. If it didn't work, you can try `@reboot sleep 10 /path/to/your/script.sh`
+
+## Bonuses
+
+this part is coming soon
+...
 # Resources
 
 - Rocky Linux Guides from their official website - [link](https://docs.rockylinux.org/guides/)
@@ -441,6 +756,10 @@ Now when it's done, let's add port 4242 to firewall.
 
 - Born2beroot guide, I found on internet - [link](https://github.com/AGolz/Born2beRoot)
 
-- My peer *iskorepova* helped me a lot, when I couldn't resolve issues with bonuses.
+- My peer ```iskorepova``` helped me a lot, when I couldn't solve my issues with bonuses. Also, my another peer - ```mbalaz``` helped me to troubleshoot my problems with password policy.
 
-- Google & Gemini for troubleshooting my problems.
+- ```Google & Gemini``` for troubleshooting my problems.
+
+- UTM vs. VirtualBox comparison: [link](https://www.howtogeek.com/virtualbox-vs-utm-which-is-best-for-linux-vms-on-mac/)
+
+- I used ```Gemini``` for quick comparison between SELinux and AppArmor, same for UFW and firewalld.
